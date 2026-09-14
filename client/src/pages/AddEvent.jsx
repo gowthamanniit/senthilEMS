@@ -39,7 +39,24 @@ export default function AddEvent() {
       .post("/createEvent", formData)
       .then((response) => {
         console.log("Event posted successfully:", response.data);
+        alert("Event Created Successfully")
         
+        //---------------clear
+        setFormData({
+
+    owner: user? user.name : "",
+    title: "",
+    optional:"",
+    description: "",
+    organizedBy: "",
+    eventDate: "",
+    eventTime: "",
+    location: "",
+    ticketPrice: 0,
+    image: '',
+    likes: 0
+  })
+        //--------------------
       })
       .catch((error) => {
         console.error("Error posting event:", error);
