@@ -1,3 +1,6 @@
+const dns = require("node:dns/promises");
+dns.setServers(["1.1.1.1"]);
+
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -13,6 +16,7 @@ const Ticket = require("./models/Ticket");
 
 const app = express();
 
+
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = "bsbsfbrnsftentwnnwnwn";
 
@@ -25,7 +29,7 @@ app.use(
    })
 );
 
-mongoose.connect(process.env.MONGO_URL);
+//mongoose.connect(process.env.MONGO_URL);
 
 const storage = multer.diskStorage({
    destination: (req, file, cb) => {
@@ -251,6 +255,11 @@ app.delete("/tickets/:id", async (req, res) => {
       console.error("Error deleting ticket:", error);
       res.status(500).json({ error: "Failed to delete ticket" });
    }
+});
+mongoose.connect(process.env.MONGO_URL).then(()=>{
+console.log("connection success")
+}).catch((err)=>{
+   console.log(err.toString())
 });
 
 const PORT = process.env.PORT || 4000;
