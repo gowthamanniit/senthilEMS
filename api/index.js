@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(
    cors({
       credentials: true,
-      origin: "https://www.senthil07.com",
-      //origin: "http://localhost:5173",
+      //origin: "https://www.senthil07.com",
+      origin: "http://localhost:5173",
    })
 );
 
